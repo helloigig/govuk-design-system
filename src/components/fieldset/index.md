@@ -32,3 +32,21 @@ Read more about [why and how to set legends as headings](/get-started/labels-leg
 On [Question pages in your service](/patterns/question-pages/) containing a group of inputs, including the question as the legend helps users of screen readers to understand that the inputs are all related to that&nbsp;question.
 
 Include general help text in the legend if it would help the user fill in the form, and you [cannot write it as hint text](/components/text-input/#hint-text). However, try to keep it as short as possible.
+
+### If you need to show a hint or error message for the whole group
+
+You might need to show a hint or error message that applies to the whole group of inputs, for example if you’re building your own group of inputs like the [Date input component](/components/date-input/).
+
+To do this:
+
+- put the fieldset inside a `govuk-form-group` container, and add the `govuk-form-group--error` class to the container when there’s an error
+- show the hint and then the error message inside the fieldset, straight after the legend
+- give the hint and error message an `id` each, and add both to the fieldset’s `aria-describedby` attribute (the `describedBy` option in Nunjucks), so screen readers read them out with the legend
+- add `role="group"` to the fieldset (the `role` option in Nunjucks), so that the JAWS screen reader reads out the hint and error message
+- add the `govuk-input--error` class to each input the user needs to change
+
+Write the error message using the [Error message component](/components/error-message/) guidance, and link to the first input with an error from the [Error summary component](/components/error-summary/).
+
+If the error is only about one of the inputs, show the error message on that input instead.
+
+{{ example({ group: "components", item: "fieldset", example: "error", html: true, nunjucks: true, open: false, size: "xl" }) }}
